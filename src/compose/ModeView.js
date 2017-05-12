@@ -6,6 +6,7 @@ import {
 import ComposeOptions from './ComposeOptions';
 import ModeSelector from './ModeSelector';
 import StreamBox from './ModeViews/StreamBox';
+import PrivateBox from './ModeViews/PrivateBox';
 
 const inlineStyles = StyleSheet.create({
   wrapper: {
@@ -63,7 +64,7 @@ export default class ModeView extends React.Component {
           />
         }
         {modeSelected === 2 &&
-          <TextInput style={inlineStyles.privateInput} placeholder={'Enter Names'} />
+          <PrivateBox operand={operand} setOperand={setOperand} />
         }
       </View>
     );

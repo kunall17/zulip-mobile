@@ -19,7 +19,6 @@ class PeopleAutocomplete extends Component {
     const { filter, ownEmail, users, onAutocomplete } = this.props;
     const people = sortUserList(filterUsersStartingWith(users, filter, ownEmail))
       .slice(1, 5);
-
     if (people.length === 0) return null;
 
     return (
@@ -29,7 +28,7 @@ class PeopleAutocomplete extends Component {
             key={x.email}
             fullName={x.fullName}
             avatarUrl={x.avatarUrl}
-            onPress={() => onAutocomplete(x.fullName)}
+            onPress={() => onAutocomplete({ name: x.fullName, email: x.email })}
           />
         ))}
       </Popup>

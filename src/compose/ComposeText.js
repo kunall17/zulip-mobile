@@ -74,7 +74,10 @@ export default class ComposeText extends React.Component {
     this.setState({ text });
   }
 
-  handleAutocomplete = (autocomplete: string) => {
+  handleAutocomplete = (autocomplete) => {
+    if (typeof autocomplete === 'object') {
+      autocomplete = autocomplete.name;
+    }
     const text = getAutocompletedText(this.state.text, autocomplete);
     this.textInput.setNativeProps({ text });
     this.setState({ text });
@@ -85,7 +88,6 @@ export default class ComposeText extends React.Component {
     const height = Math.min(Math.max(MIN_HEIGHT, contentHeight), MAX_HEIGHT);
     const lastword = text.match(/\b(\w+)$/);
     const lastWordPrefix = lastword && lastword.index && text[lastword.index - 1];
-
     return (
       <View style={componentStyles.wrapper}>
         {lastWordPrefix === ':' &&
