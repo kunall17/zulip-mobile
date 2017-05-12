@@ -44,17 +44,15 @@ export default class ComposeText extends React.Component {
   }
 
   handleSend = () => {
-    const { auth, narrow } = this.props;
+    const { auth, operator, operand } = this.props;
     const { text } = this.state;
-
-    if (isPrivateOrGroupNarrow(narrow)) {
-      sendMessage(auth, 'private', narrow[0].operand, '', text);
-    } else if (isStreamNarrow(narrow)) {
-      sendMessage(auth, 'stream', narrow[0].operand, '(no topic)', text);
-    } else if (isTopicNarrow(narrow)) {
-      sendMessage(auth, 'stream', narrow[0].operand, narrow[1].operand, text);
+    if (operator === 'pm-with') {
+      sendMessage(auth, 'private', operand, '', text);
+    } else if (operand === '') {
+      sendMessage(auth, 'stream', operator, '(no topic)', text);
+    } else {
+      sendMessage(auth, 'stream', operator, operand, text);
     }
-
     this.clearInput();
   }
 
