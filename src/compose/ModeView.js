@@ -5,6 +5,7 @@ import {
 
 import ComposeOptions from './ComposeOptions';
 import ModeSelector from './ModeSelector';
+import StreamBox from './ModeViews/StreamBox';
 
 const inlineStyles = StyleSheet.create({
   wrapper: {
@@ -54,11 +55,12 @@ export default class ModeView extends React.Component {
           <ComposeOptions selected={optionSelected} onChange={handleOptionSelected} />
         }
         {modeSelected === 1 &&
-          <View style={inlineStyles.streamInputWrapper}>
-            <TextInput style={inlineStyles.streamInput} placeholder={'Stream'} />
-            <Text>{'>'}</Text>
-            <TextInput style={inlineStyles.topicInput} placeholder={'Topic'} />
-          </View>
+          <StreamBox
+            operator={operator}
+            operand={operand}
+            setOperator={setOperator}
+            setOperand={setOperand}
+          />
         }
         {modeSelected === 2 &&
           <TextInput style={inlineStyles.privateInput} placeholder={'Enter Names'} />
