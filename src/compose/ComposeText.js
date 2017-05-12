@@ -1,12 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import { connect } from 'react-redux';
 
 import styles from '../styles';
 import { Input } from '../common';
 import { isStreamNarrow, isTopicNarrow, isPrivateOrGroupNarrow } from '../utils/narrow';
 import { registerUserInputActivity } from '../utils/activity';
-import { getAuth } from '../account/accountSelectors';
 import sendMessage from '../api/sendMessage';
 import SendButton from './SendButton';
 import getAutocompletedText from '../autocomplete/getAutocompletedText';
@@ -31,7 +29,7 @@ type Props = {
   narrow: Object,
 };
 
-class ComposeText extends React.Component {
+export default class ComposeText extends React.Component {
 
   props: Props;
 
@@ -116,10 +114,3 @@ class ComposeText extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-  auth: getAuth(state),
-  narrow: state.chat.narrow,
-});
-
-export default connect(mapStateToProps)(ComposeText);

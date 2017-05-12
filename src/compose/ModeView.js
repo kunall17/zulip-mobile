@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, TextInput, Text, StyleSheet
+  View, StyleSheet
 } from 'react-native';
 
 import ComposeOptions from './ComposeOptions';
@@ -10,34 +10,45 @@ const inlineStyles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
   },
-  streamInputWrapper: {
-    flexDirection: 'row', alignItems: 'center', flex: 1
-  },
-  privateInput: {
-    flex: 1
-  },
   divider: {
     width: 2,
     backgroundColor: '#ecf0f1',
     margin: 4
   },
-  streamInput: {
-    flex: 0.2,
-    margin: 2
-  },
-  topicInput: {
-    flex: 0.8,
-    margin: 2
-  }
 });
 
 export default class ModeView extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      modeSelected: 0,
+    };
+  }
+
+  handleModeChanged = () => {
+    const { setOperand, setOperator } = this.props;
+
+    this.setState({
+      modeSelected: (this.state.modeSelected === 2) ? 0 : this.state.modeSelected + 1,
+      operator: (this.state.modeSelected === 1) ? 'pm-with' : '',
+      operand: ''
+    });
+    if (this.state.modeSelected === 1) {
+      setOperator('pm-with');
+    } else {
+      setOperator('');
+    }
+    setOperand('');
+  };
+
   render() {
-    const { modeSelected, optionSelected, handleOptionSelected, handleModeChanged } = this.props;
+    const { modeSelected } = this.state;
+    const { setOperator, setOperand, operator, operand,
+      optionSelected, handleOptionSelected } = this.props;
 
     return (
       <View style={inlineStyles.wrapper}>
-        <ModeSelector modeSelected={modeSelected} onModeChange={handleModeChanged} />
+        <ModeSelector modeSelected={modeSelected} onModeChange={this.handleModeChanged} />
         <View style={inlineStyles.divider} />
         {modeSelected === 0 &&
           <ComposeOptions selected={optionSelected} onChange={handleOptionSelected} />
