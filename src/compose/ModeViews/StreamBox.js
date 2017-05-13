@@ -22,6 +22,7 @@ export default class StreamBox extends Component {
   constructor() {
     super();
     this.state = { autoComplete: false };
+    this.count = 0;
   }
   handleAutocompleteOperator = (operator: string) => {
     this.props.setOperator(operator);
@@ -29,10 +30,19 @@ export default class StreamBox extends Component {
     this.operandInput.focus();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.narrow !== nextProps.narrow) {
+      if (nextProps.narrow[0].operator !== 'pm-with') {
+        const { setOperand, setOperator } = this.props;
+        setOperand(nextProps.narrow[0].operand);
+        setOperator(nextProps.narrow[0].operator);
+      }
+    }
+  }
+
   render() {
     const { operator, setOperator, operand, setOperand } = this.props;
     const { autoComplete } = this.state;
-
     return (
       <View style={styles.streamInputWrapper}>
         {autoComplete &&

@@ -40,7 +40,7 @@ class ComposeBox extends React.Component {
 
   render() {
     const { optionSelected, operator, operand } = this.state;
-    const { auth, narrow } = this.props;
+    const { auth, narrow, users } = this.props;
     const ActiveComposeComponent = composeComponents[optionSelected];
 
     return (
@@ -53,6 +53,8 @@ class ComposeBox extends React.Component {
             setOperand={this.setOperand}
             operator={operator}
             operand={operand}
+            users={users}
+            narrow={narrow}
           />
         </View>
         <View style={styles.divider} />
@@ -70,6 +72,7 @@ class ComposeBox extends React.Component {
 const mapStateToProps = (state) => ({
   auth: getAuth(state),
   narrow: state.chat.narrow,
+  users: state.users
 });
 
 export default connect(mapStateToProps)(ComposeBox);

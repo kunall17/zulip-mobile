@@ -46,7 +46,7 @@ export default class ModeView extends React.Component {
   render() {
     const { modeSelected } = this.state;
     const { setOperator, setOperand, operator, operand,
-      optionSelected, handleOptionSelected } = this.props;
+      optionSelected, handleOptionSelected, narrow, users } = this.props;
 
     return (
       <View style={inlineStyles.wrapper}>
@@ -61,10 +61,11 @@ export default class ModeView extends React.Component {
             operand={operand}
             setOperator={setOperator}
             setOperand={setOperand}
+            narrow={narrow}
           />
         }
         {modeSelected === 2 &&
-          <PrivateBox operand={operand} setOperand={setOperand} />
+          <PrivateBox operand={operand} setOperand={setOperand} narrow={narrow} users={users} />
         }
       </View>
     );

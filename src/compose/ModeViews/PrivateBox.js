@@ -24,6 +24,18 @@ export default class PrivateBox extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.narrow !== nextProps.narrow) {
+      const recipientEmails = nextProps.narrow[0].operand.split(',');
+      const email = {};
+      const mapEmailToName = (element) => {
+        email[element] = this.props.users.find(x => x.email === element).fullName;
+      };
+      recipientEmails.forEach(mapEmailToName);
+      this.setState({ email }, this.updateOperand);
+    }
+  }
+
   updateOperand = () =>
     this.props.setOperand(Object.keys(this.state.email).join(','));
 

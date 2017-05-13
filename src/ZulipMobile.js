@@ -21,7 +21,7 @@ export default class ZulipMobile extends Component {
     if (!this.state.rehydrated) {
       return <LoadingScreen />;
     }
-
+    console.disableYellowBox = true;
     return (
       <Provider store={store}>
         <NavigationContainer />
