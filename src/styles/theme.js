@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
-import { BORDER_COLOR, BRAND_COLOR, STATUSBAR_HEIGHT, CONTROL_SIZE, NAVBAR_HEIGHT } from './';
+import { BORDER_COLOR, BRAND_COLOR, STATUSBAR_HEIGHT, CONTROL_SIZE, NAVBAR_HEIGHT, HALF_COLOR } from './';
 
-export default ({ color, backgroundColor, borderColor }) => ({
+export default ({ color, backgroundColor, borderColor, tagColor }) => ({
   color: {
     color,
   },
@@ -138,5 +138,14 @@ export default ({ color, backgroundColor, borderColor }) => ({
     borderWidth: 0.5,
     height: CONTROL_SIZE * 3 / 4,
     borderColor: BORDER_COLOR,
+  },
+  tagInput: {
+    backgroundColor: tagColor,
+    color,
+  },
+  privateInput: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1
   },
 });

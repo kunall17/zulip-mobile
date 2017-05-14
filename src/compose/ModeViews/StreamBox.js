@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {
-  View, TextInput, Text, StyleSheet
+  View, Text, StyleSheet
 } from 'react-native';
 import StreamAutocomplete from '../../autocomplete/StreamAutocomplete';
+import Input from '../../common/Input';
 
 const styles = StyleSheet.create({
   streamInputWrapper: {
@@ -47,7 +48,7 @@ export default class StreamBox extends Component {
       <View style={styles.streamInputWrapper}>
         {autoComplete &&
           <StreamAutocomplete filter={operator} onAutocomplete={this.handleAutocompleteOperator} />}
-        <TextInput
+        <Input
           style={styles.streamInput}
           placeholder={'Stream'}
           onChange={(event) => {
@@ -62,7 +63,7 @@ export default class StreamBox extends Component {
           autoFocus
         />
         <Text>{'>'}</Text>
-        <TextInput
+        <Input
           ref={component => { this.operandInput = component; }}
           style={styles.topicInput}
           placeholder={'Topic'}

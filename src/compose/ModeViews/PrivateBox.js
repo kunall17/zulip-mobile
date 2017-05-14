@@ -5,14 +5,7 @@ import {
 import TagInput from 'react-native-tag-input';
 
 import PeopleAutocomplete from '../../autocomplete/PeopleAutocomplete';
-
-const styles = StyleSheet.create({
-  privateInput: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1
-  },
-});
+import styles from '../../styles/index';
 
 export default class PrivateBox extends Component {
   constructor() {
@@ -69,13 +62,14 @@ export default class PrivateBox extends Component {
   }
 
   render() {
+    const tagStyle = StyleSheet.flatten(styles.tagInput);
     const { text } = this.state;
     const inputProps = {
       keyboardType: 'default',
       placeholder: 'Enter names',
       autoFocus: true,
       onChangeText: this.handleChangeText,
-      value: text
+      value: text,
     };
 
     return (
@@ -88,8 +82,8 @@ export default class PrivateBox extends Component {
         <TagInput
           value={this.extractNames()}
           onChange={this.onChangeTags}
-          tagColor="#ecf0f1"
-          tagTextColor="black"
+          tagColor={tagStyle.backgroundColor}
+          tagTextColor={tagStyle.color}
           inputProps={inputProps}
           numberOfLines={1}
         />
