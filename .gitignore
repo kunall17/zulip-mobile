@@ -43,6 +43,11 @@ android/keystores/debug.keystore
 coverage/
 *.keystore
 
+/int-test/*
+/int-test/tests/__pycache__/*
+!/int-test/tests
+!/int-test/readme.md
+
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
