@@ -13,6 +13,7 @@ All contributors to our previous projects, as well as newcomers, are welcome to 
 * [Developer Guide](docs/developer-guide.md)
 * [Architecture](docs/architecture.md)
 * [Testing](docs/testing.md)
+* [Integration Testing](int-test/readme.md)
 * [Recommended Reading](docs/recommended-reading.md)
 * [Release Guide](docs/release-guide.md)
 * [Contributing](#contributing)
