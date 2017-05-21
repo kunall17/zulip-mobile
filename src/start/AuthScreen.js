@@ -33,7 +33,7 @@ class AuthScreen extends React.Component {
           <View style={styles.container}>
             <Label
               style={[styles.field]}
-              value={this.props.realm}
+              text={this.props.realm}
               editable={false}
             />
             {authBackends.includes('dev') &&

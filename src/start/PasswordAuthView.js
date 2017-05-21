@@ -28,6 +28,7 @@ class PasswordAuthView extends React.Component {
       progress: false,
       email: props.email || config.defaultLoginEmail,
       password: props.password || config.defaultLoginPassword,
+      error: null
     };
   }
 
@@ -89,7 +90,7 @@ class PasswordAuthView extends React.Component {
           progress={progress}
           onPress={this.validateForm}
         />
-        <ErrorMsg error={error} />
+        {error && <ErrorMsg error={error} />}
       </View>
     );
   }
