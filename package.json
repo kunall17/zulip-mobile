@@ -17,7 +17,8 @@
     "test:flow": "flow",
     "test:unit": "jest",
     "test:coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "test": "npm run test:lint && npm run test:coveralls && npm run test:flow"
+    "test": "npm run test:lint && npm run test:coveralls && npm run test:flow",
+    "test-int": "mocha --compilers js:babel-core/register __int-tests__/basic.js"    
   },
   "dependencies": {
     "base-64": "^0.1.0",
@@ -53,10 +54,13 @@
     "string.fromcodepoint": "^0.2.1"
   },
   "devDependencies": {
-    "babel-core": "^6.21.0",
+    "babel-core": "^6.24.1",
     "babel-eslint": "^7.1.1",
     "babel-jest": "^20.0.0",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-react-native": "^1.9.1",
+    "chai": "^2.2.0",
+    "chai-as-promised": "^5.0.0",
     "coveralls": "^2.13.0",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^15.0.1",
@@ -70,8 +74,10 @@
     "jest": "^20.0.0",
     "jest-cli": "^20.0.0",
     "jest-react-native": "^18.0.0",
+    "mocha": "^2.4.5",
     "react-native-cli": "^2.0.1",
-    "react-test-renderer": "16.0.0-alpha.6"
+    "react-test-renderer": "16.0.0-alpha.6",
+    "wd": "^0.3.11"
   },
   "postinstall": "rm -f node_modules/intl/.babelrc",
   "jest": {

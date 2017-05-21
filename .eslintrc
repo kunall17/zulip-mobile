@@ -45,7 +45,7 @@
     "react/no-array-index-key": 0,
     "react/no-unused-prop-types": 0,
     "import/prefer-default-export": 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/__tests__/*.js"]}],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/__tests__/*.js", "**/__int-tests__/*.js"]}],
     "react-native/no-unused-styles": 2,
     "react-native/split-platform-components": 2,
     "react-native/no-inline-styles": 2,
@@ -73,6 +73,7 @@
         "Menlo", "ok", "py", "todo", "Mc", "lodash", "selectable", "isequal", "lightgray", "tc",
         "zulipchat", "prepend", "pierre", "allen", "jan", "donald", "jane", "unicode", "joe",
         "dan", "abramov", "lang", "Crashlytics", "bool", "ionicons", "truthy", "bezier", "decrement", "js", "jsonp",
+        "chai", "chaiAsPromised", "wd", "localhost", "iphonesimulator"
       ],
       "skipIfMatch": [
         "http://[^s]*",
