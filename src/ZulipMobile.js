@@ -15,6 +15,7 @@ export default class ZulipMobile extends Component {
   };
 
   componentWillMount() {
+    console.disableYellowBox = true;
     restore(() => {
       this.setState({ rehydrated: true });
     });
