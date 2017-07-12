@@ -8,7 +8,7 @@ export const countUnread = (
   messageIds: number[],
   readFlags: Object,
   fromId: number = -1,
-  toId: number = -1,
+  toId: number = -1
 ): number => {
   let count = 0;
   // count starts from the beginning if fromId === -1

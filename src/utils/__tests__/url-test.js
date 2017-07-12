@@ -79,7 +79,7 @@ describe('isUrlInAppLink', () => {
 
   test('when link is internal and in app, return true', () => {
     expect(isUrlInAppLink('https://example.com/#narrow/stream/jest', 'https://example.com')).toBe(
-      true,
+      true
     );
   });
 });
@@ -87,7 +87,7 @@ describe('isUrlInAppLink', () => {
 describe('isMessageLink', () => {
   test('only in-app link containing "near/<message-id>" is a message link', () => {
     expect(isMessageLink('https://example.com/#narrow/stream/jest', 'https://example.com')).toBe(
-      false,
+      false
     );
     expect(isMessageLink('https://example.com/#narrow/#near/1', 'https://example.com')).toBe(true);
   });
@@ -96,13 +96,13 @@ describe('isMessageLink', () => {
 describe('isStreamLink', () => {
   test('only in-app link containing "stream" is a stream link', () => {
     expect(
-      isStreamLink('https://example.com/#narrow/pm-with/1,2-group', 'https://example.com'),
+      isStreamLink('https://example.com/#narrow/pm-with/1,2-group', 'https://example.com')
     ).toBe(false);
     expect(isStreamLink('https://example.com/#narrow/stream/jest', 'https://example.com')).toBe(
-      true,
+      true
     );
     expect(
-      isStreamLink('https://example.com/#narrow/stream/jest/topic/test', 'https://example.com'),
+      isStreamLink('https://example.com/#narrow/stream/jest/topic/test', 'https://example.com')
     ).toBe(true);
   });
 });
@@ -110,19 +110,19 @@ describe('isStreamLink', () => {
 describe('isTopicLink', () => {
   test('only in-app link containing "topic" is a topic link', () => {
     expect(
-      isTopicLink('https://example.com/#narrow/pm-with/1,2-group', 'https://example.com'),
+      isTopicLink('https://example.com/#narrow/pm-with/1,2-group', 'https://example.com')
     ).toBe(false);
     expect(isTopicLink('https://example.com/#narrow/stream/jest', 'https://example.com')).toBe(
-      false,
+      false
     );
     expect(
-      isTopicLink('https://example.com/#narrow/stream/jest/topic/test', 'https://example.com'),
+      isTopicLink('https://example.com/#narrow/stream/jest/topic/test', 'https://example.com')
     ).toBe(true);
     expect(
       isTopicLink(
         'https://example.com/#narrow/near/1/stream/jest/topic/test',
-        'https://example.com',
-      ),
+        'https://example.com'
+      )
     ).toBe(true);
   });
 });
@@ -130,13 +130,13 @@ describe('isTopicLink', () => {
 describe('isGroupLink', () => {
   test('only in-app link containing "pm-with" is a group link', () => {
     expect(
-      isGroupLink('https://example.com/#narrow/stream/jest/topic/test', 'https://example.com'),
+      isGroupLink('https://example.com/#narrow/stream/jest/topic/test', 'https://example.com')
     ).toBe(false);
     expect(
-      isGroupLink('https://example.com/#narrow/pm-with/1,2-group', 'https://example.com'),
+      isGroupLink('https://example.com/#narrow/pm-with/1,2-group', 'https://example.com')
     ).toBe(true);
     expect(
-      isGroupLink('https://example.com/#narrow/near/1/pm-with/1,2-group', 'https://example.com'),
+      isGroupLink('https://example.com/#narrow/near/1/pm-with/1,2-group', 'https://example.com')
     ).toBe(true);
   });
 });
@@ -144,16 +144,16 @@ describe('isGroupLink', () => {
 describe('isSpecialLink', () => {
   test('only in-app link containing "is" is a special link', () => {
     expect(
-      isSpecialLink('https://example.com/#narrow/stream/jest/topic/test', 'https://example.com'),
+      isSpecialLink('https://example.com/#narrow/stream/jest/topic/test', 'https://example.com')
     ).toBe(false);
     expect(isSpecialLink('https://example.com/#narrow/is/private', 'https://example.com')).toBe(
-      true,
+      true
     );
     expect(isSpecialLink('https://example.com/#narrow/is/starred', 'https://example.com')).toBe(
-      true,
+      true
     );
     expect(isSpecialLink('https://example.com/#narrow/is/mentioned', 'https://example.com')).toBe(
-      true,
+      true
     );
   });
 });
@@ -166,7 +166,7 @@ describe('isEmojiUrl', () => {
   test('when url is on realm and emoji', () => {
     const result = isEmojiUrl(
       '/static/generated/emoji/images/emoji/unicode/1f680.png',
-      'https://example.com',
+      'https://example.com'
     );
     expect(result).toBe(true);
   });
@@ -188,7 +188,7 @@ describe('getNarrowFromLink', () => {
 
   test('when link is not in-app link, return default homeNarrow', () => {
     expect(getNarrowFromLink('https://example.com/user_uploads', 'https://example.com')).toEqual(
-      [],
+      []
     );
   });
 
@@ -200,7 +200,7 @@ describe('getNarrowFromLink', () => {
       },
     ];
     expect(
-      getNarrowFromLink('https://example.com/#narrow/stream/jest', 'https://example.com'),
+      getNarrowFromLink('https://example.com/#narrow/stream/jest', 'https://example.com')
     ).toEqual(expectedValue);
   });
 
@@ -228,8 +228,8 @@ describe('getNarrowFromLink', () => {
     expect(
       getNarrowFromLink(
         'https://example.com/#narrow/stream/jest/topic/(no.20topic)',
-        'https://example.com',
-      ),
+        'https://example.com'
+      )
     ).toEqual(expectedValue);
   });
 
@@ -244,8 +244,8 @@ describe('getNarrowFromLink', () => {
       getNarrowFromLink(
         'https://example.com/#narrow/pm-with/1,2,3-group',
         'https://example.com',
-        users,
-      ),
+        users
+      )
     ).toEqual(expectedValue);
   });
 
@@ -257,7 +257,7 @@ describe('getNarrowFromLink', () => {
       },
     ];
     expect(
-      getNarrowFromLink('https://example.com/#narrow/is/starred', 'https://example.com'),
+      getNarrowFromLink('https://example.com/#narrow/is/starred', 'https://example.com')
     ).toEqual(expectedValue);
   });
 
@@ -266,8 +266,8 @@ describe('getNarrowFromLink', () => {
       getNarrowFromLink(
         'https://example.com/#narrow/near/1/pm-with/1,3-group',
         'https://example.com',
-        users,
-      ),
+        users
+      )
     ).toEqual([
       {
         operator: 'pm-with',
@@ -278,8 +278,8 @@ describe('getNarrowFromLink', () => {
       getNarrowFromLink(
         'https://example.com/#narrow/near/1/stream/jest/topic/test',
         'https://example.com',
-        users,
-      ),
+        users
+      )
     ).toEqual([
       {
         operator: 'stream',
@@ -296,7 +296,7 @@ describe('getNarrowFromLink', () => {
 describe('getMessageIdFromLink', () => {
   test('not message link', () => {
     expect(
-      getMessageIdFromLink('https://example.com/#narrow/is/private', 'https://example.com'),
+      getMessageIdFromLink('https://example.com/#narrow/is/private', 'https://example.com')
     ).toBeUndefined();
   });
 
@@ -304,8 +304,8 @@ describe('getMessageIdFromLink', () => {
     expect(
       getMessageIdFromLink(
         'https://example.com/#narrow/near/1/pm-with/1,3-group',
-        'https://example.com',
-      ),
+        'https://example.com'
+      )
     ).toBe(1);
   });
 
@@ -313,8 +313,8 @@ describe('getMessageIdFromLink', () => {
     expect(
       getMessageIdFromLink(
         'https://example.com/#narrow/near/1/stream/jest/topic/test',
-        'https://example.com',
-      ),
+        'https://example.com'
+      )
     ).toBe(1);
   });
 });

@@ -49,7 +49,7 @@ describe('privateNarrow', () => {
           operator: 'pm-with',
           operand: 'bob@example.com',
         },
-      ]),
+      ])
     ).toBe(true);
   });
 });
@@ -73,7 +73,7 @@ describe('groupNarrow', () => {
           operator: 'pm-with',
           operand: 'bob@example.com',
         },
-      ]),
+      ])
     ).toBe(false);
     expect(
       isGroupNarrow([
@@ -81,7 +81,7 @@ describe('groupNarrow', () => {
           operator: 'pm-with',
           operand: 'bob@example.com,john@example.com',
         },
-      ]),
+      ])
     ).toBe(true);
   });
 });
@@ -96,7 +96,7 @@ describe('isPrivateOrGroupNarrow', () => {
           operator: 'pm-with',
           operand: 'bob@example.com',
         },
-      ]),
+      ])
     ).toBe(true);
     expect(
       isPrivateOrGroupNarrow([
@@ -104,7 +104,7 @@ describe('isPrivateOrGroupNarrow', () => {
           operator: 'pm-with',
           operand: 'bob@example.com,john@example.com',
         },
-      ]),
+      ])
     ).toBe(true);
   });
 });
@@ -115,7 +115,9 @@ describe('isStreamOrTopicNarrow', () => {
     expect(isStreamOrTopicNarrow(topicNarrow('some stream', 'some topic'))).toBe(true);
     expect(isStreamOrTopicNarrow(homeNarrow())).toBe(false);
     expect(isStreamOrTopicNarrow(privateNarrow('a@a.com'))).toBe(false);
-    expect(isStreamOrTopicNarrow(groupNarrow(['john@example.com', 'mark@example.com']))).toBe(false);
+    expect(isStreamOrTopicNarrow(groupNarrow(['john@example.com', 'mark@example.com']))).toBe(
+      false
+    );
     expect(isStreamOrTopicNarrow(specialNarrow('starred'))).toBe(false);
   });
 });
@@ -176,7 +178,7 @@ describe('topicNarrow', () => {
           operator: 'topic',
           operand: 'some topic',
         },
-      ]),
+      ])
     ).toBe(true);
   });
 });
@@ -260,19 +262,16 @@ describe('isMessageInNarrow', () => {
     expect(isMessageInNarrow(message, narrow)).toBe(true);
   });
 
-  test(
-    'message with type stream is in topic narrow if current stream and topic match with its own',
-    () => {
-      const message = {
-        type: 'stream',
-        subject: 'some topic',
-        display_recipient: 'some stream',
-      };
-      const narrow = topicNarrow('some stream', 'some topic');
+  test('message with type stream is in topic narrow if current stream and topic match with its own', () => {
+    const message = {
+      type: 'stream',
+      subject: 'some topic',
+      display_recipient: 'some stream',
+    };
+    const narrow = topicNarrow('some stream', 'some topic');
 
-      expect(isMessageInNarrow(message, narrow)).toBe(true);
-    },
-  );
+    expect(isMessageInNarrow(message, narrow)).toBe(true);
+  });
 });
 
 describe('narrowFromMessage', () => {

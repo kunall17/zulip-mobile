@@ -70,5 +70,5 @@ export default connect(
     auth: getAuth(state),
     accounts: state.accounts,
   }),
-  boundActions,
+  boundActions
 )(AccountPickScreen);

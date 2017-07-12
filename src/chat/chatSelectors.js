@@ -11,26 +11,19 @@ import { NULL_MESSAGE } from '../nullObjects';
 
 const privateNarrowStr = JSON.stringify(specialNarrow('private'));
 
-export const getSubscriptions = (state: GlobalState): Stream[] =>
-  state.subscriptions;
+export const getSubscriptions = (state: GlobalState): Stream[] => state.subscriptions;
 
-export const getMute = (state: GlobalState): Object =>
-  state.mute;
+export const getMute = (state: GlobalState): Object => state.mute;
 
-export const getTyping = (state: GlobalState): Object =>
-  state.typing;
+export const getTyping = (state: GlobalState): Object => state.typing;
 
-export const getUsers = (state: GlobalState): Object =>
-  state.users;
+export const getUsers = (state: GlobalState): Object => state.users;
 
-export const getReadFlags = (state: GlobalState): Object =>
-  state.flags.read;
+export const getReadFlags = (state: GlobalState): Object => state.flags.read;
 
-export const getAllMessages = (state: GlobalState): Message[] =>
-  state.chat.messages;
+export const getAllMessages = (state: GlobalState): Message[] => state.chat.messages;
 
-export const getActiveNarrow = (state: GlobalState): Narrow =>
-  state.chat.narrow;
+export const getActiveNarrow = (state: GlobalState): Narrow => state.chat.narrow;
 
 export const getActiveNarrowString = (state: GlobalState): string =>
   JSON.stringify(state.chat.narrow);
@@ -41,7 +34,7 @@ export const getPrivateNarrowString = (state: GlobalState): string =>
 export const getMessagesInActiveNarrow = createSelector(
   getAllMessages,
   getActiveNarrowString,
-  (allMessages, activeNarrowString) => (allMessages[activeNarrowString] || []),
+  (allMessages, activeNarrowString) => allMessages[activeNarrowString] || []
 );
 
 export const getShownMessagesInActiveNarrow = createSelector(
@@ -50,26 +43,23 @@ export const getShownMessagesInActiveNarrow = createSelector(
   getSubscriptions,
   getMute,
   (messagesInActiveNarrow, activeNarrow, subscriptions, mute) =>
-  messagesInActiveNarrow.filter(item => !shouldBeMuted(item, activeNarrow, subscriptions, mute))
+    messagesInActiveNarrow.filter(item => !shouldBeMuted(item, activeNarrow, subscriptions, mute))
 );
 
-export const getAnchor = createSelector(
-  getMessagesInActiveNarrow,
-  (messages) => {
-    if (messages.length === 0) {
-      return undefined;
-    }
-
-    return {
-      older: messages[0].id,
-      newer: messages[messages.length - 1].id,
-    };
+export const getAnchor = createSelector(getMessagesInActiveNarrow, messages => {
+  if (messages.length === 0) {
+    return undefined;
   }
-);
+
+  return {
+    older: messages[0].id,
+    newer: messages[messages.length - 1].id,
+  };
+});
 
 export const getPrivateMessages = createSelector(
   getAllMessages,
-  (messages) => (messages[privateNarrowStr] || []),
+  messages => messages[privateNarrowStr] || []
 );
 
 export const getRecentConversations = createSelector(
@@ -104,9 +94,8 @@ export const getRecentConversations = createSelector(
     }, new Map());
 
     // sort by most recent timestamp
-    return Array.from(groupedRecipients.values())
-      .sort((a, b) => +b.timestamp - +a.timestamp);
-  },
+    return Array.from(groupedRecipients.values()).sort((a, b) => +b.timestamp - +a.timestamp);
+  }
 );
 
 export const getUnreadPrivateMessagesCount = createSelector(
@@ -134,14 +123,14 @@ export const getCurrentTypingUsers = createSelector(
     }
 
     return currentTyping.map(userId => getUserById(users, userId));
-  },
+  }
 );
 
 export const getLastTopicInActiveNarrow = createSelector(
   getMessagesInActiveNarrow,
-  (messagesInActiveNarrow) => {
+  messagesInActiveNarrow => {
     const reversedMessages = messagesInActiveNarrow.slice().reverse();
     const lastMessageWithSubject = reversedMessages.find(msg => msg.subject) || NULL_MESSAGE;
     return lastMessageWithSubject.subject;
-  },
+  }
 );

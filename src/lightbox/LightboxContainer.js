@@ -90,7 +90,7 @@ class LightboxContainer extends React.PureComponent {
           url,
           auth,
         });
-      },
+      }
     );
   };
 
@@ -147,6 +147,6 @@ export default connectActionSheet(
     state => ({
       auth: getAuth(state),
     }),
-    boundActions,
-  )(LightboxContainer),
+    boundActions
+  )(LightboxContainer)
 );

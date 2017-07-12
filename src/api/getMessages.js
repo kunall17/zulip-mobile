@@ -9,18 +9,13 @@ export default async (
   numBefore: number,
   numAfter: number,
   narrow: Narrow,
-  useFirstUnread: boolean = false,
+  useFirstUnread: boolean = false
 ) =>
-  apiGet(
-    auth,
-    'messages',
-    res => res.messages,
-    {
-      anchor,
-      num_before: numBefore,
-      num_after: numAfter,
-      narrow: JSON.stringify(narrow),
-      apply_markdown: true,
-      use_first_unread_anchor: useFirstUnread,
-    },
-  );
+  apiGet(auth, 'messages', res => res.messages, {
+    anchor,
+    num_before: numBefore,
+    num_after: numAfter,
+    narrow: JSON.stringify(narrow),
+    apply_markdown: true,
+    use_first_unread_anchor: useFirstUnread,
+  });

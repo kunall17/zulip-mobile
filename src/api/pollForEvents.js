@@ -12,5 +12,5 @@ export default (auth: Auth, queueId: number, lastEventId: number) =>
       last_event_id: lastEventId,
     },
     true,
-    false,
+    false
   );

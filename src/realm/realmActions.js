@@ -19,7 +19,7 @@ export const initialFetchComplete = (): Action => ({
 
 export const fetchEssentialInitialData = (): Action => async (
   dispatch: Dispatch,
-  getState: GetState,
+  getState: GetState
 ) => {
   const [subscriptions, messages] = await Promise.all([
     await tryUntilSuccessful(() => getSubscriptions(getAuth(getState()))),
@@ -33,13 +33,13 @@ export const fetchEssentialInitialData = (): Action => async (
 
 export const fetchRestOfInitialData = (pushToken: string): Action => async (
   dispatch: Dispatch,
-  getState: GetState,
+  getState: GetState
 ) => {
   const [streams, users, messages, realmEmoji] = await Promise.all([
     await tryUntilSuccessful(() => getStreams(getAuth(getState()))),
     await tryUntilSuccessful(() => getUsers(getAuth(getState()))),
     await tryUntilSuccessful(() =>
-      getMessages(getAuth(getState()), Number.MAX_SAFE_INTEGER, 100, 0, specialNarrow('private')),
+      getMessages(getAuth(getState()), Number.MAX_SAFE_INTEGER, 100, 0, specialNarrow('private'))
     ),
     await tryUntilSuccessful(() => getRealmEmojis(getAuth(getState()))),
   ]);

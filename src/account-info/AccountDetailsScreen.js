@@ -52,5 +52,5 @@ export default connect(
     users: state.users,
     orientation: state.app.orientation,
   }),
-  boundActions,
+  boundActions
 )(AccountDetailsScreen);

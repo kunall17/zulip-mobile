@@ -27,7 +27,7 @@ export const appOrientation = (orientation: string): Action => ({
 
 export const startEditMessage = (messageId: number) => async (
   dispatch: Dispatch,
-  getState: GetState,
+  getState: GetState
 ) => {
   const message = await getSingleMessage(getAuth(getState()), messageId);
   dispatch({

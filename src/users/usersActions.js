@@ -6,7 +6,7 @@ import { getAuth } from '../account/accountSelectors';
 
 export const sendFocusPing = (hasFocus: boolean, newUserInput: boolean): Action => async (
   dispatch: Dispatch,
-  getState: GetState,
+  getState: GetState
 ) => {
   const response = await focusPing(getAuth(getState()), hasFocus, newUserInput);
   dispatch({

@@ -19,7 +19,7 @@ export const switchNarrow = (narrow: Narrow): Action => ({
 
 export const doNarrow = (newNarrow: Narrow, anchor: number = Number.MAX_SAFE_INTEGER): Action => (
   dispatch: Dispatch,
-  getState: GetState,
+  getState: GetState
 ) => {
   registerAppActivity(getAuth(getState()));
   requestIdleCallback(() => dispatch(switchNarrow(newNarrow)));
@@ -35,7 +35,7 @@ export const messageFetchSuccess = (
   messages: any[],
   narrow: Narrow,
   fetching?: Fetching,
-  caughtUp?: Object,
+  caughtUp?: Object
 ): Action => ({
   type: MESSAGE_FETCH_SUCCESS,
   messages,
@@ -49,7 +49,7 @@ export const backgroundFetchMessages = (
   numBefore: number,
   numAfter: number,
   narrow: Narrow,
-  useFirstUnread: boolean = false,
+  useFirstUnread: boolean = false
 ): Action => async (dispatch: Dispatch, getState: GetState) => {
   const messages = await getMessages(
     getAuth(getState()),
@@ -57,7 +57,7 @@ export const backgroundFetchMessages = (
     numBefore,
     numAfter,
     narrow,
-    useFirstUnread,
+    useFirstUnread
   );
 
   let caughtUp = { older: false, newer: false };
@@ -85,8 +85,8 @@ export const backgroundFetchMessages = (
         ...(numBefore ? { older: false } : {}),
         ...(numAfter ? { newer: false } : {}),
       },
-      caughtUp,
-    ),
+      caughtUp
+    )
   );
 };
 
@@ -95,7 +95,7 @@ export const fetchMessages = (
   numBefore: number,
   numAfter: number,
   narrow: Narrow,
-  useFirstUnread: boolean = false,
+  useFirstUnread: boolean = false
 ): Action => async (dispatch: Dispatch) => {
   if (numBefore < 0 || numAfter < 0) {
     throw Error('numBefore and numAfter must >= 0');
@@ -105,7 +105,7 @@ export const fetchMessages = (
     messageFetchStart(narrow, {
       ...(numBefore ? { older: true } : {}),
       ...(numAfter ? { newer: true } : {}),
-    }),
+    })
   );
   dispatch(backgroundFetchMessages(anchor, numBefore, numAfter, narrow, useFirstUnread));
 };

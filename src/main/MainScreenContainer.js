@@ -48,5 +48,5 @@ export default connect(
     orientation: state.app.orientation,
     editMessage: state.app.editMessage,
   }),
-  boundActions,
+  boundActions
 )(MainScreenContainer);

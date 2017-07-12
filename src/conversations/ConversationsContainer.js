@@ -14,5 +14,5 @@ export default connect(
     users: state.users,
     conversations: getRecentConversations(state),
   }),
-  boundActions,
+  boundActions
 )(props => <ConversationsCard {...props} />);

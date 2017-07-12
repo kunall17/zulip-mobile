@@ -8,7 +8,7 @@ export default (html: string): DomElement[] => {
   const parser = new htmlparser.Parser(
     new htmlparser.DomHandler((err, dom) => {
       if (!err) domTree = dom;
-    }),
+    })
   );
   parser.write(html);
   parser.done();

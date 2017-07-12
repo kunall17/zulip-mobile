@@ -43,5 +43,5 @@ export default connect(
     realm: getCurrentRealm(state),
     users: state.users,
   }),
-  boundActions,
+  boundActions
 )(UserListCard);

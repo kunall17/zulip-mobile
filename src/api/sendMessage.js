@@ -7,16 +7,11 @@ export default async (
   type: 'private' | 'stream',
   to: string | string[],
   subject: string,
-  content: string,
+  content: string
 ) =>
-  apiPost(
-    auth,
-    'messages',
-    res => res.messages,
-    {
-      type,
-      to,
-      subject,
-      content,
-    },
-  );
+  apiPost(auth, 'messages', res => res.messages, {
+    type,
+    to,
+    subject,
+    content,
+  });

@@ -9,7 +9,7 @@ import {
   ACCOUNT_SWITCH,
   SET_AUTH_TYPE,
   LOGIN_SUCCESS,
-  LOGOUT
+  LOGOUT,
 } from '../actionConstants';
 
 export default (
@@ -21,19 +21,13 @@ export default (
     case ACCOUNT_SWITCH:
       return getStateForRoute(getInitialRoute(state));
     case SET_AUTH_TYPE: {
-      return AppNavigator.router.getStateForAction(
-        navigateToAuth(action.authType),
-        state
-      );
+      return AppNavigator.router.getStateForAction(navigateToAuth(action.authType), state);
     }
     case LOGIN_SUCCESS:
     case INITIAL_FETCH_COMPLETE:
       return getStateForRoute('main');
     case LOGOUT: {
-      return AppNavigator.router.getStateForAction(
-        navigateToAccountPicker(),
-        state
-      );
+      return AppNavigator.router.getStateForAction(navigateToAccountPicker(), state);
     }
     default:
       return AppNavigator.router.getStateForAction(action, state);

@@ -45,7 +45,7 @@ export default ({
 
     if (!prevItem || diffDays) {
       list.push(
-        <TimeRow type="time_row" key={`time${item.timestamp}`} timestamp={item.timestamp} />,
+        <TimeRow type="time_row" key={`time${item.timestamp}`} timestamp={item.timestamp} />
       );
     }
 
@@ -63,7 +63,7 @@ export default ({
           subscriptions={subscriptions}
           narrow={narrow}
           onHeaderLongPress={onHeaderLongPress}
-        />,
+        />
       );
     }
 

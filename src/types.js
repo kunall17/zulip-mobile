@@ -169,21 +169,21 @@ export type Actions = {
     messages: any[],
     narrow: Narrow,
     fetching?: Fetching,
-    caughtUp?: Object,
+    caughtUp?: Object
   ) => Action,
   backgroundFetchMessages: (
     anchor: number,
     numBefore: number,
     numAfter: number,
     narrow: Narrow,
-    useFirstUnread: boolean,
+    useFirstUnread: boolean
   ) => Action,
   fetchMessages: (
     anchor: number,
     numBefore: number,
     numAfter: number,
     narrow: Narrow,
-    useFirstUnread: boolean,
+    useFirstUnread: boolean
   ) => Action,
   fetchMessagesAtFirstUnread: (narrow: Narrow) => Action,
   markMessagesRead: (messageIds: number[]) => Actions,

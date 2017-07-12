@@ -10,12 +10,11 @@ const styles = StyleSheet.create({
   reactions: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
 });
 
 export default class ReactionList extends React.PureComponent {
-
   props: {
     messageId: number,
     reactions: Reaction[],
@@ -33,7 +32,7 @@ export default class ReactionList extends React.PureComponent {
 
     return (
       <View style={styles.reactions}>
-        {aggregated.map((x: ReactionType, i: number) => (
+        {aggregated.map((x: ReactionType, i: number) =>
           <Reaction
             key={x.name}
             messageId={messageId}
@@ -41,7 +40,7 @@ export default class ReactionList extends React.PureComponent {
             voted={x.selfReacted}
             voteCount={x.count}
           />
-        ))}
+        )}
       </View>
     );
   }

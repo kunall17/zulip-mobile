@@ -5,7 +5,7 @@ import { topicNarrow, streamNarrow, groupNarrow, specialNarrow } from './narrow'
 import { getUserById } from '../users/usersSelectors';
 
 export const getAuthHeader = (email: string, apiKey: string): ?string =>
-  (apiKey ? `Basic ${base64.encode(`${email}:${apiKey}`)}` : undefined);
+  apiKey ? `Basic ${base64.encode(`${email}:${apiKey}`)}` : undefined;
 
 export const encodeAsURI = (params: Object): string =>
   Object.keys(params)
@@ -13,13 +13,13 @@ export const encodeAsURI = (params: Object): string =>
     .join('&');
 
 export const getFullUrl = (url: string, realm: string): string =>
-  (url.startsWith('/') ? `${realm}${url}` : url);
+  url.startsWith('/') ? `${realm}${url}` : url;
 
 export const isUrlOnRealm = (url: string, realm: string): boolean =>
   url.startsWith('/') || url.startsWith(realm);
 
 export const isUrlInAppLink = (url: string, realm: string): boolean =>
-  (isUrlOnRealm(url, realm) ? url.split(realm).pop().startsWith('/#narrow') : false);
+  isUrlOnRealm(url, realm) ? url.split(realm).pop().startsWith('/#narrow') : false;
 
 export const isMessageLink = (url: string, realm: string): boolean =>
   isUrlInAppLink(url, realm) && url.includes('near');
@@ -47,16 +47,16 @@ export const getNarrowFromLink = (url: string, realm: string, users: any[]): [] 
   if (isGroupLink(url, realm)) {
     const recipients = paths[paths.length - 1].split('-')[0].split(',');
     return groupNarrow(
-      recipients.map(recipient => getUserById(users, parseInt(recipient, 10)).email),
+      recipients.map(recipient => getUserById(users, parseInt(recipient, 10)).email)
     );
   } else if (isTopicLink(url, realm)) {
     return topicNarrow(
       decodeURIComponent(paths[paths.lastIndexOf('stream') + 1].replace(/\./g, '%')),
-      decodeURIComponent(paths[paths.lastIndexOf('topic') + 1].replace(/\./g, '%')),
+      decodeURIComponent(paths[paths.lastIndexOf('topic') + 1].replace(/\./g, '%'))
     );
   } else if (isStreamLink(url, realm)) {
     return streamNarrow(
-      decodeURIComponent(paths[paths.lastIndexOf('stream') + 1].replace(/\./g, '%')),
+      decodeURIComponent(paths[paths.lastIndexOf('stream') + 1].replace(/\./g, '%'))
     );
   } else if (isSpecialLink(url, realm)) {
     return specialNarrow(paths[paths.length - 1]);
@@ -81,7 +81,7 @@ const getResourceNoAuth = (uri: string) => ({
 });
 
 export const getResource = (uri: string, auth: Auth): Object =>
-  (isUrlOnRealm(uri, auth.realm) ? getResourceWithAuth(uri, auth) : getResourceNoAuth(uri));
+  isUrlOnRealm(uri, auth.realm) ? getResourceWithAuth(uri, auth) : getResourceNoAuth(uri);
 
 export const fixRealmUrl = (url: string) => {
   // Automatically prepend 'https://' if the user does not enter a protocol

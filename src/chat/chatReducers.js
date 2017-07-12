@@ -45,7 +45,7 @@ export default (state: ChatState = initialState, action: Action) => {
         narrow: action.narrow,
         fetching: { older: false, newer: false },
         caughtUp: { older: false, newer: false },
-        editMessage: null
+        editMessage: null,
       };
     }
 
@@ -82,7 +82,7 @@ export default (state: ChatState = initialState, action: Action) => {
       return chatUpdater(state, action.messageId, oldMessage => ({
         ...oldMessage,
         reactions: oldMessage.reactions.filter(
-          x => !(x.emoji_name === action.emoji && x.user.email === action.user.email),
+          x => !(x.emoji_name === action.emoji && x.user.email === action.user.email)
         ),
       }));
 
@@ -105,24 +105,27 @@ export default (state: ChatState = initialState, action: Action) => {
         subject: action.subject || oldMessage.subject,
         subject_links: action.subject_links || oldMessage.subject_links,
         edit_history: [
-          action.orig_rendered_content ? (action.orig_subject ? {
-            prev_rendered_content: action.orig_rendered_content,
-            prev_subject: oldMessage.subject,
-            timestamp: action.edit_timestamp,
-            prev_rendered_content_version: action.prev_rendered_content_version,
-            user_id: action.user_id,
-          } : {
-            prev_rendered_content: action.orig_rendered_content,
-            timestamp: action.edit_timestamp,
-            prev_rendered_content_version: action.prev_rendered_content_version,
-            user_id: action.user_id,
-          }) :
-          {
-            prev_subject: oldMessage.subject,
-            timestamp: action.edit_timestamp,
-            user_id: action.user_id,
-          },
-          ...oldMessage.edit_history || [],
+          action.orig_rendered_content
+            ? action.orig_subject
+              ? {
+                  prev_rendered_content: action.orig_rendered_content,
+                  prev_subject: oldMessage.subject,
+                  timestamp: action.edit_timestamp,
+                  prev_rendered_content_version: action.prev_rendered_content_version,
+                  user_id: action.user_id,
+                }
+              : {
+                  prev_rendered_content: action.orig_rendered_content,
+                  timestamp: action.edit_timestamp,
+                  prev_rendered_content_version: action.prev_rendered_content_version,
+                  user_id: action.user_id,
+                }
+            : {
+                prev_subject: oldMessage.subject,
+                timestamp: action.edit_timestamp,
+                user_id: action.user_id,
+              },
+          ...(oldMessage.edit_history || []),
         ],
         last_edit_timestamp: action.edit_timestamp,
       }));

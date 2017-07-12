@@ -11,7 +11,7 @@ import { BATCH_ACTIONS, REALM_INIT, EVENT_REGISTERED } from '../actionConstants'
 
 const startEventPolling = (queueId: number, eventId: number) => async (
   dispatch: Dispatch,
-  getState: GetState,
+  getState: GetState
 ) => {
   let lastEventId = eventId;
   let numFailures = 0;

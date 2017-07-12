@@ -75,7 +75,7 @@ export default (state: FlagsState = initialState, action: Action): FlagsState =>
           }
           return newState;
         },
-        { ...state },
+        { ...state }
       );
 
     case EVENT_NEW_MESSAGE:

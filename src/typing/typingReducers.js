@@ -31,7 +31,7 @@ export default (state: TypingState = initialState, action: Action): TypingState 
       }
 
       const newTypingUsers = state[normalizedRecipients].filter(
-        userId => userId !== action.sender.user_id,
+        userId => userId !== action.sender.user_id
       );
 
       if (newTypingUsers.length > 0) {

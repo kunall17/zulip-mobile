@@ -26,8 +26,7 @@ export default class MessageTyping extends React.PureComponent {
     users: Object[],
   };
 
-  handleAvatarPress = (email: string) =>
-    this.props.actions.navigateToAccountDetails(email);
+  handleAvatarPress = (email: string) => this.props.actions.navigateToAccountDetails(email);
 
   render() {
     const { users } = this.props;
@@ -35,7 +34,7 @@ export default class MessageTyping extends React.PureComponent {
 
     return (
       <View style={styles.message}>
-        {users.map(user => (
+        {users.map(user =>
           <View key={user.email} style={styles.avatar}>
             <Avatar
               avatarUrl={user.avatarUrl}
@@ -43,8 +42,10 @@ export default class MessageTyping extends React.PureComponent {
               onPress={() => this.handleAvatarPress(user.email)}
             />
           </View>
-        ))}
-        <Text style={styles.text}>{text}</Text>
+        )}
+        <Text style={styles.text}>
+          {text}
+        </Text>
       </View>
     );
   }

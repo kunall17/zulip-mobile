@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
 });
 
 export default class CameraPhotoList extends React.Component {
-
   props: {
     noMoreData: boolean,
     dataSource: any,
@@ -58,21 +57,14 @@ export default class CameraPhotoList extends React.Component {
     }
 
     return false;
-  }
+  };
 
-  renderFooterSpinner = () =>
-    (this.props.noMoreData ? null : <ActivityIndicator />);
+  renderFooterSpinner = () => (this.props.noMoreData ? null : <ActivityIndicator />);
 
-  renderRow = (rowData: Array<Image>, sectionID: string, rowID: string) => (
+  renderRow = (rowData: Array<Image>, sectionID: string, rowID: string) =>
     <View style={styles.row}>
-      {rowData.map((image) => image &&
-        <Image
-          source={image.node.image}
-          style={styles.image}
-        />
-      )}
-    </View>
-  );
+      {rowData.map(image => image && <Image source={image.node.image} style={styles.image} />)}
+    </View>;
 
   render() {
     const { dataSource, onEndReached } = this.props;

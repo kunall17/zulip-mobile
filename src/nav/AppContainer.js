@@ -95,5 +95,5 @@ export default connect(
     accounts: state.accounts,
     pushToken: state.realm.pushToken,
   }),
-  boundActions,
+  boundActions
 )(AppContainer);

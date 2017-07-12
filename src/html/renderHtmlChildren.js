@@ -23,7 +23,7 @@ export default ({
   cascadingTextStyle,
   onPress,
   message,
-  indexedStyles
+  indexedStyles,
 }: Props) =>
   childrenNodes &&
   childrenNodes
@@ -34,7 +34,7 @@ export default ({
         x.name !== 'annotation'
     )
     .map((node, index) =>
-      (<HtmlNode
+      <HtmlNode
         key={index} // eslint-disable-line react/no-array-index-key
         auth={auth}
         actions={actions}
@@ -47,5 +47,5 @@ export default ({
         childrenNodes={node.children}
         onPress={onPress}
         message={message}
-      />)
+      />
     );

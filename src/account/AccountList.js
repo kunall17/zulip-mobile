@@ -6,12 +6,11 @@ import type { Auth } from '../types';
 import AccountItem from './AccountItem';
 
 export default class AccountList extends React.PureComponent {
-
   props: {
     auth: Auth,
     accounts: any[],
-    onAccountSelect: (number) => void,
-    onAccountRemove: (number) => void,
+    onAccountSelect: number => void,
+    onAccountRemove: number => void,
   };
 
   render() {
@@ -19,7 +18,7 @@ export default class AccountList extends React.PureComponent {
 
     return (
       <View>
-        {accounts.map((account, i) => (
+        {accounts.map((account, i) =>
           <AccountItem
             key={account.apiKey}
             index={i}
@@ -28,7 +27,7 @@ export default class AccountList extends React.PureComponent {
             onSelect={onAccountSelect}
             onRemove={onAccountRemove}
           />
-        ))}
+        )}
       </View>
     );
   }
