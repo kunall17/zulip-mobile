@@ -37,8 +37,7 @@ export default class MultilineInput extends PureComponent {
   };
 
   render() {
-    const { placeholder, textInputRef, style, onChange } = this.props;
-
+    const { placeholder, textInputRef, style, onChange, placeholderValues, value } = this.props;
     return (
       <Input
         style={[style, componentStyles.input]}
@@ -50,6 +49,12 @@ export default class MultilineInput extends PureComponent {
         onContentSizeChange={this.handleOnContentSizeChange}
         placeholder={placeholder}
         textInputRef={textInputRef}
+        placeholderValues={placeholderValues}
+        ref={component => {
+          this.textInput = component;
+          if (textInputRef) textInputRef(component);
+        }}
+        value={value}
       />
     );
   }

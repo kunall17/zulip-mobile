@@ -29,7 +29,7 @@ class Screen extends PureComponent {
   };
 
   render() {
-    const { keyboardAvoiding, title, children } = this.props;
+    const { keyboardAvoiding, title, children, rightItem } = this.props;
     const WrapperView = keyboardAvoiding && Platform.OS === 'ios' ? KeyboardAvoidingView : View;
     const { styles } = this.context;
     const flattenStyle = StyleSheet.flatten(styles.background);
@@ -38,7 +38,7 @@ class Screen extends PureComponent {
     return (
       <View style={styles.screen}>
         <ZulipStatusBar backgroundColor={backgroundColor} />
-        <ModalNavBar title={title} />
+        <ModalNavBar title={title} rightItem={rightItem} />
         <WrapperView style={componentStyles.screenWrapper} behavior="padding">
           {children}
         </WrapperView>

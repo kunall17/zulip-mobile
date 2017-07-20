@@ -20,6 +20,9 @@ export const navigateToUsersScreen = (): Action =>
 
 export const navigateToSearch = (): Action => NavigationActions.navigate({ routeName: 'search' });
 
+export const navigateToFullEditor = (saveNewText): Action =>
+  NavigationActions.navigate({ routeName: 'full-screen-editor', params: { saveNewText } });
+
 export const navigateToSettings = (): Action =>
   NavigationActions.navigate({ routeName: 'settings' });
 

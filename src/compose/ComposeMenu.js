@@ -21,11 +21,21 @@ class ComposeMenu extends React.Component {
   handlePress = () => {
     this.props.showActionSheetWithOptions(
       {
-        options: ['Hide topic edit', 'Create group', 'Upload image', 'Cancel'],
-        cancelButtonIndex: 3,
+        options: [
+          'Hide topic edit',
+          'Create group',
+          'Upload image',
+          'Full screen editor',
+          'Cancel',
+        ],
+        cancelButtonIndex: 4,
       },
       buttonIndex => {
         // Do something here depending on the button index selected
+        if (buttonIndex === 3) {
+          const { navToFull, saveNewText } = this.props;
+          navToFull(saveNewText);
+        }
       },
     );
   };
@@ -41,9 +51,9 @@ class ComposeMenu extends React.Component {
 
 const ConnectedComposeMenu = connectActionSheet(ComposeMenu);
 
-export default () =>
+export default props =>
   <View style={componentStyles.wrapper}>
     <ActionSheetProvider>
-      <ConnectedComposeMenu />
+      <ConnectedComposeMenu {...props} />
     </ActionSheetProvider>
   </View>;

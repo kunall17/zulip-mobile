@@ -72,6 +72,10 @@ class ComposeBox extends PureComponent {
     registerUserInputActivity(auth);
   };
 
+  saveNewText = (message: string) => {
+    this.setState({ message });
+  };
+
   handleHeightChange = (height: number) => {
     this.setState({ height });
   };
@@ -116,7 +120,7 @@ class ComposeBox extends PureComponent {
   render() {
     const { styles } = this.context;
     const { height, message } = this.state;
-    const { auth, narrow, users } = this.props;
+    const { auth, narrow, users, actions } = this.props;
 
     const canSelectTopic = isStreamNarrow(narrow);
     const messageHeight = Math.min(Math.max(MIN_HEIGHT, height + 10), MAX_HEIGHT);
@@ -127,7 +131,7 @@ class ComposeBox extends PureComponent {
       <View style={[styles.composeBox, { height: totalHeight }]}>
         <AutoCompleteView text={message} onAutocomplete={this.handleMessageChange} />
         <View style={componentStyles.bottom}>
-          <ComposeMenu />
+          <ComposeMenu navToFull={actions.navigateToFullEditor} saveNewText={this.saveNewText} />
         </View>
         <View style={[componentStyles.composeText]}>
           {canSelectTopic &&

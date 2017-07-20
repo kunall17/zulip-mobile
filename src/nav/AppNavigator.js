@@ -16,6 +16,7 @@ import LoadingScreen from '../start/LoadingScreen';
 import SettingsScreen from '../settings/SettingsScreen';
 import SettingsDetailScreen from '../settings/SettingsDetailScreen';
 import LightboxScreen from '../lightbox/LightboxScreen';
+import FullEditorScreen from '../compose/FullEditor/FullEditorScreen';
 
 export default StackNavigator(
   {
@@ -26,6 +27,7 @@ export default StackNavigator(
     chat: { screen: ChatScreen },
     dev: { screen: DevAuthScreen },
     loading: { screen: LoadingScreen },
+    'full-screen-editor': { screen: FullEditorScreen },
     main: { screen: MainScreenContainer },
     realm: { screen: RealmScreen },
     search: { screen: SearchMessagesScreen },
