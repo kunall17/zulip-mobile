@@ -8,10 +8,11 @@ import Providers from './Providers';
 import config from './config';
 
 require('./i18n/locale');
-//
-// if (config.enableSentry) {
-//   Sentry.config(config.sentryKey).install();
-// }
+
+if (config.enableSentry) {
+  console.log('seehere');
+  // Sentry.config(config.sentryKey).install();
+}
 
 export default class ZulipMobile extends Component {
   componentWillMount() {
