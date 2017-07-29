@@ -14,4 +14,5 @@ export default {
   enableReduxLogging: isDevelopment && !!global.btoa,
   enableSentry: !isDevelopment,
   sentryKey: 'ADD-DSN-HERE',
+  disableYellowBox: false,
 };

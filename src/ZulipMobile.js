@@ -14,6 +14,8 @@ if (config.enableSentry) {
   Sentry.config(config.sentryKey).install();
 }
 
+console.disableYellowBox = config.disableYellowBox; // eslint-disable-line
+
 export default class ZulipMobile extends Component {
   componentWillMount() {
     restore();
