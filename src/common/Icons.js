@@ -31,4 +31,6 @@ export const IconPlus = (props: Object) =>
 export const IconMaterialCommunity = (props: Object) =>
   <MaterialCommunityIcons name={props.name} {...props} />;
 
+export const IconMaterial = (props: Object) => <MaterialIcon name={props.name} {...props} />;
+
 export default IoniconsIcon;
