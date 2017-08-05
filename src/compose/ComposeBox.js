@@ -73,6 +73,7 @@ class ComposeBox extends PureComponent {
   };
 
   saveNewText = (message: string) => {
+    console.log('seehere', message);
     this.setState({ message });
   };
 
@@ -121,6 +122,7 @@ class ComposeBox extends PureComponent {
     const { styles } = this.context;
     const { height, message } = this.state;
     const { auth, narrow, users, actions } = this.props;
+    console.log('watchere');
 
     const canSelectTopic = isStreamNarrow(narrow);
     const messageHeight = Math.min(Math.max(MIN_HEIGHT, height + 10), MAX_HEIGHT);
