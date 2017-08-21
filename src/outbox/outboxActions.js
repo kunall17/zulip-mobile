@@ -27,7 +27,7 @@ export const deleteOutboxMessage = (localMessageId: number) => ({
   localMessageId,
 });
 
-export const trySendMessages = () => (dispatch: Dispatch, getState: GetState) => {
+export const trySendMessages = (queueId: number) => (dispatch: Dispatch, getState: GetState) => {
   const state = getState();
   if (state.outbox.length > 0 && !state.app.outboxSending) {
     dispatch(toggleOutboxSending(true));
@@ -40,7 +40,7 @@ export const trySendMessages = () => (dispatch: Dispatch, getState: GetState) =>
         item.subject,
         item.content,
         item.timestamp,
-        state.app.eventQueueId,
+        queueId || state.app.eventQueueId,
       );
     });
     dispatch(toggleOutboxSending(false));

@@ -95,6 +95,7 @@ export const fetchEssentialInitialData = (): Action => async (
   dispatch(initSubscriptions(subscriptions));
   dispatch(initialFetchComplete());
 
+  dispatch(trySendMessages(initData.queue_id));
   dispatch(startEventPolling(initData.queue_id, initData.last_event_id));
 };
 
@@ -128,7 +129,6 @@ export const fetchRestOfInitialData = (): Action => async (
 export const doInitialFetch = (): Action => async (dispatch: Dispatch, getState: GetState) => {
   dispatch(fetchEssentialInitialData());
   dispatch(fetchRestOfInitialData());
-  dispatch(trySendMessages());
 
   if (!DeviceInfo.isEmulator()) {
     dispatch(initNotifications());
