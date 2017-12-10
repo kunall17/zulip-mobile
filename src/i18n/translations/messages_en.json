@@ -100,8 +100,8 @@
   "Render messages with HTML": "Render messages with HTML",
   "Distinguish unread messages": "Distinguish unread messages",
   "Split message text": "Split message text",
-  "Administrators":"Administrators",
-  "Normal users":"Normal users",
+  "Administrators": "Administrators",
+  "Normal users": "Normal users",
   "Share image": "Share image",
   "Share link to image": "Share link to image",
   "You are not subscribed to this stream": "You are not subscribed to this stream",
@@ -111,5 +111,8 @@
   "Create": "Create",
   "Public": "Public",
   "Private": "Private",
-  "Notifications": "Notifications"
+  "Notifications": "Notifications",
+  "Edit topic": "Edit topic",
+  "Enter the new topic for the message": "Enter the new topic for the message",
+  "Enter topic": "Enter topic"
 }

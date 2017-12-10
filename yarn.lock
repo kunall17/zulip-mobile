@@ -4985,6 +4985,10 @@ react-native-photo-view@^1.5.2:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-prompt-android@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-prompt-android/-/react-native-prompt-android-0.3.1.tgz#6d10ff80a5b48f0204e40bf8bc78295dfe29df38"
+
 react-native-safari-view@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-native-safari-view/-/react-native-safari-view-2.0.0.tgz#3aeb40693b0765df16b9beaf8654b60c7ff1d7ed"

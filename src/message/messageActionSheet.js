@@ -24,6 +24,8 @@ import {
   toggleMessageStarred,
 } from '../api';
 import showToast from '../utils/showToast';
+import prompt from '../common/prompt';
+import updateStreamMessageTopic from '../api/messages/updateStreamMessageTopic';
 
 type MessageAndDoNarrowType = {
   message: Object,
@@ -122,7 +124,7 @@ const copyToClipboard = async ({ getString, auth, message }: AuthGetStringAndMes
   const rawMessage = isAnOutboxMessage({ message })
     ? message.markdownContent
     : await getMessageById(auth, message.id);
-  Clipboard.setString(rawMessage);
+  Clipboard.setString(rawMessage.raw_content);
   showToast(getString('Message copied'));
 };
 
@@ -130,6 +132,22 @@ const isSentMessage = ({ message }: Message): boolean => !isAnOutboxMessage({ me
 
 const editMessage = async ({ message, actions }: MessageAuthAndActions) => {
   actions.startEditMessage(message.id);
+};
+
+const editTopic = ({ auth, message, getString }: AuthGetStringAndMessageType) => {
+  const onPressOk = text => {
+    const asd = updateStreamMessageTopic(auth, text, message.id);
+  };
+  const onPressCancel = () => null;
+
+  prompt({
+    topic: getString('Enter topic'),
+    message: getString('Enter the new topic for the message'),
+    defaultValue: message.topic,
+    onPressOk,
+    onPressCancel,
+    placeholder: 'Topic',
+  });
 };
 
 const doDeleteMessage = async ({ auth, message, actions }: MessageAuthAndActions) => {
@@ -164,6 +182,8 @@ const doMuteStream = ({ auth, message, subscriptions }: AuthMessageAndSubscripti
 
 const isSentBySelfAndNarrowed = ({ message, auth, narrow }: AuthMessageAndNarrow): boolean =>
   auth.email === message.sender_email && !isHomeNarrow(narrow) && !isSpecialNarrow(narrow);
+
+const isStreamMessage = ({ message }: Message): boolean => message.type === 'stream';
 
 const isSentBySelf = ({ message, auth }: AuthAndMessageType): boolean =>
   auth.email === message.sender_email;
@@ -205,6 +225,16 @@ const actionSheetButtons: ActionSheetButtonType[] = [
     onPress: editMessage,
     onlyIf: ({ message, auth, narrow }) =>
       resolveMultiple(message, auth, narrow, [isSentMessage, isSentBySelfAndNarrowed]),
+  },
+  {
+    title: 'Edit topic',
+    onPress: editTopic,
+    onlyIf: ({ message, auth, narrow }) =>
+      resolveMultiple(message, auth, narrow, [
+        isSentMessage,
+        isSentBySelfAndNarrowed,
+        isStreamMessage,
+      ]),
   },
   {
     title: 'Delete message',
