@@ -35,7 +35,7 @@ additional step:
   deployments](https://zulip.readthedocs.io/en/latest/production/mobile-push-notifications.html),
   adapted for the Zulip dev environment.
 
-Now, follow the instructions in [dev-server.md](dev-server.md) to log into
+Now, follow the instructions in [dev-server.md](howto/dev-server.md) to log into
 the dev server, using a production build of the app -- that is, the Zulip
 app installed from the App Store or Play Store.
 
